@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+
+    <style>
+h2{
+    text-align: center;
+}
+
+#container{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+input, label{
+
+    width: 120px;
+}
+.triangulo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+.quadrado{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+}
+.trapezio{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+}
+.circulo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+}
+.retangulo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+}
+
+div.content{
+    padding-top: 0;
+    
+}
+
+#triangulo {
+    width: 0; 
+    height: 0;
+    border-left: 75px solid transparent;
+    border-right: 75px solid transparent;
+    border-bottom: 75px solid #d6d628;
+}
+#quadrado{
+    width: 0;
+    height: 0;
+    border-left: 75px solid #eb1515;
+    border-bottom: 75px solid #eb1515
+}
+#trapezio{
+    border-bottom: 75px solid #30c930;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    height: 0;
+    width: 95px;
+}
+#circulo{
+    width: 0;
+    height: 0;
+    border-radius: 100%;
+    border-left: 75px solid #2424b4;
+    border-bottom: 75px solid #2424b4
+}
+#retangulo{
+    width: 0;
+    height: 0;
+    border-left: 100px solid #960b0b;
+    border-bottom: 75px solid #960b0b
+}
+    </style>
+    <script>
+        function areaTriangulo() {
+            var baseT = parseFloat(document.getElementById("baseT").value); 
+            var alturaT = parseFloat(document.getElementById("alturaT").value);
+            var resultTri = document.getElementById("resultTri");
+
+            var areaTriangulo = baseT*alturaT/2;
+            resultTri.innerHTML =  areaTriangulo;
+        }
+
+        function areaQuadrado() {
+            var lado = parseFloat(document.getElementById("lado").value);
+            var resultQuad = document.getElementById("resultQuad");
+
+            var areaQuadrado = lado**2;
+            resultQuad.innerHTML =  areaQuadrado;
+        }
+
+        function areaRetangulo() {
+            var base = parseFloat(document.getElementById("base").value); 
+            var altura = parseFloat(document.getElementById("altura").value);
+            var resultRet = document.getElementById("resultRet");
+
+            var areaRetangulo = base*altura;
+            resultRet.innerHTML =  areaRetangulo;
+        }
+
+        function areaCirculo() {
+            var raio = parseFloat(document.getElementById("raio").value);
+            var resultCir = document.getElementById("resultCir");
+
+            var areaCirculo = Math.PI*raio**2;
+            resultCir.innerHTML =  areaCirculo;
+        }
+
+        function areaTrapezio() {
+            var baseM = parseFloat(document.getElementById("baseM").value); 
+            var basem = parseFloat(document.getElementById("basem").value);
+            var alturaTra = parseFloat(document.getElementById("alturaTra").value);
+            var resultTra = document.getElementById("resultTra");
+
+            var areaTrapezio = (baseM+basem)/2*alturaTra;
+            resultTra.innerHTML =  areaTrapezio;
+        }
+
+    </script>
+</head>
+<body>
+    <h2>Figuras Geometricas</h2>
+  <div id="container">
+    <table border="1">
+        <thead>
+            <th>Triângulo</th>
+            <th>Quadrado</th>
+            <th>Retângulo</th>
+            <th>Circulo</th>
+            <th>Trapézio</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="triangulo" id="triangulo"></div>
+                </td>
+
+                <td>
+                    <div class="quadrado" id="quadrado"></div>
+                </td>
+
+                <td>
+                    <div class="retangulo" id="retangulo"></div>
+                </td>
+                <td>
+                    <div class="circulo" id="circulo"></div>
+                </td>
+                <td>
+                    <div class="trapezio" id="trapezio"></div>
+                </td>
+            </tr>
+            <tr>
+                <!--Triangulo-->
+                <td>
+                    <div class="content">
+                        <label>Base: </label>
+                        <input type="number" id="baseT" name="baseT" placeholder="Informe a base"> <br><br>
+                    </div>
+                    <label>Altura: </label>
+                    <input type="number" id="alturaT" name="alturaT" placeholder="Informe a altura"> <br><br>
+                    <div>
+                        <input class="botao" type="button" id="areaTriangulo" value="Calc. Área" onclick="areaTriangulo()">
+                    </div>
+                    <label>Área:</label>
+                    <div id="resultTri"></div>
+                </td>
+            
+                <!--Quadrado-->
+                <td>
+                    <div class="content">
+                        <label>Lado: </label>
+                        <input type="number" id="lado" name="lado" placeholder="Informe o lado"> <br><br>
+                    </div>
+                    <div>
+                        <input class="botao" type="button" id="areaQuadrado" value="Calc. Área" onclick="areaQuadrado()">
+                    </div>
+                    <label>Área:</label>
+                    <div id="resultQuad"></div>
+                </td>
+
+                <!--Retangulo-->
+                <td>
+                    <label>Base: </label>
+                    <input type="number" id="base" name="base" placeholder="Informe a base"> <br><br>
+
+                    <label>Altura: </label>
+                    <input type="number" id="altura" name="altura" placeholder="Informe a altura"> <br><br>
+
+                    <div>
+                        <input class="botao" type="button" id="areaRetangulo" value="Calc. Área" onclick="areaRetangulo()">
+                    </div>
+                    <label>Área:</label>
+                    <div id="resultRet"></div>
+                </td>
+
+                <!--Circulo-->
+                <td>
+                    <label>Raio: </label>
+                    <input type="number" id="raio" name="raio" placeholder="Informe o raio"> <br><br>
+
+                    <div>
+                        <input class="botao" type="button" id="areaCirculo" value="Calc. Área" onclick="areaCirculo()">
+                    </div>
+
+                    <label>Área:</label>
+                    <div id="resultCir"></div>
+                </td>
+
+                <!--Trapézio-->
+                <td>
+                    <label>Base maior : </label>
+                    <input type="number" id="baseM" name="baseM" placeholder="Informe a base maior"> <br><br>
+
+                    <label>Base menor: </label>
+                    <input type="number" id="basem" name="basem" placeholder="Informe a base menor"> <br><br>
+
+                    <label>Altura: </label>
+                    <input type="number" id="alturaTra" name="alturaTra" placeholder="Informe a altura"> <br><br>
+
+                    <div>
+                        <input class="botao" type="button" id="areaTrapezio" value="Calc. Área" onclick="areaTrapezio()">
+                    </div>
+                    <label>Área:</label>
+                    <div id="resultTra"></div>
+                </td>
+
+            </tr>
+        </tbody>
+
+    </table>
+ </div>
+</body>
+</html>
