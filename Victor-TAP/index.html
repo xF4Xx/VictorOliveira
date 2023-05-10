@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+
+        }
+    </style>
+    <script>
+        function SubTotal(){
+            var Quant = parseFloat(document.getElementById("Quant").value); 
+            var preco = parseFloat(document.getElementById("preco").value);
+            var resultTotal = document.getElementById("resutTotal");
+
+            var SubTotal = preoc*Quant;
+            resultTotal.innerHTML =  SubTotal;
+        }
+    </script>
+</head>
+<body>
+    <h2>Comanda do cliente</h2>
+    <table border="1">
+        <thead>
+            <th>#</th>
+            <th>Descrição</th>
+            <th>Qnt.</th>
+            <th>Preço</th>
+            <th>SubTotal</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td><select name="comidas" id="comidas">
+                    <option value=""></option>
+                    <option value="cachorro-quente">Cachorro-quente</option>
+                    <option value="Coxinha">Coxinha</option>
+                    <option value="X-Tudo">X-Tudo</option>
+                    <option value="X-Calabresa">X-Calabresa</option>
+                    <option value="Pizza">Pizza</option>
+                    <option value="Batata-Frita">Batata-Frita</option>
+                </select></td>
+                <td>
+                    <input type="number" id="Quant" name="Quant" placeholder="Informe Quantos Lanches">
+                </td>
+                <td>
+                    <input type="text" id="preco" name="preco" placeholder="Informe o preço">  
+                </td>
+                <td>
+                    <input type="text" id="sub-total" name="Sub-total" placeholder="Sub-Total" onblur="SubTotal()" disabled>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <input class="botao" type="button" id="Calc.Total" value="Calc.Total" onclick="Calcular()">
+
+</body>
+</html>
