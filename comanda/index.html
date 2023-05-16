@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comanda</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #5e5e5e;
+
+        }
+
+        th{
+            padding-left:7px;
+            padding-right:7px;
+        }
+
+        table * {
+            text-align: center;
+            min-width: 40px;
+            margin: 5px;
+
+        }
+
+        table input,
+        select {
+            border: 1px solid #ffffff;
+        }
+
+        table input:focus,
+        select:focus {
+            outline: none;
+        }
+
+        .sub-t {
+            text-align: center;
+        }
+
+        #content {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: fit-content;
+        }        
+        
+        
+
+        #buttons {
+            width: 100%;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+        }
+
+        .button {
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px;
+            background-color: #1317df;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #1317df;
+        }
+
+        .button:active {
+            background-color: #0a468a;
+        }
+
+        .add-sub {
+            width: 40px;
+            margin-left: 1055px;
+            margin-bottom: 5px;
+        }
+
+    </style>
+    <script>
+
+        var cont = 1;
+        var subtotais = [];
+
+        function addLine() {
+            cont++;
+            tabela = document.getElementById("tabela");
+
+            linha = '<tr id="l' + cont + '"><td id="l' + cont + '-c1">' + cont + '</td><td id="l' + cont + '-c2"><select id="l' + cont + '-c2-1" class="select-1"><option value="x-tudo" class="options">X-Tudo</option><option value="x-bacon" class="options">X-Bacon</option><option value="x-calabresa" class="options">X-Calabresa</option><option value="refrigerante" class="options">Refrigerante</option><option value="suco" class="options">Suco</option></select></td><td id="l' + cont + '-c3"><input id="l' + cont + '-c3-1" class="qtd" type="number" onblur="calcSubTotal(' + cont + ')" min="0" placeholder="0"></td><td id="l' + cont + '-c4"><input id="l' + cont + '-c4-1" type="text" onblur="calcSubTotal(' + cont + ')" min="0" placeholder="0"></td><td id="l' + cont + '-c5" class="sub-t">0</td></tr>';
+
+
+            tabela.insertAdjacentHTML('beforeend', linha);
+
+        }
+
+        function calcTotal() {
+            var total = 0;
+            for (var i = 0; i < subtotais.length; i++) {
+                total += subtotais[i];
+            }
+            var disp = total.toFixed(2);
+            document.getElementById("total").innerHTML = "Total: R$ " + disp.replace(".", ",");
+        }
+
+        function calcSubTotal(linha) {
+            var qtd = document.getElementById("l" + linha + "-c3-1").value;
+            var preco = document.getElementById("l" + linha + "-c4-1").value;
+            var subtotal = parseFloat(qtd) * parseFloat(preco);
+
+            if (isNaN(subtotal)) {
+                subtotal = 0;
+            }
+            document.getElementById("l" + linha + "-c5").innerHTML = subtotal;
+            subtotais[linha - 1] = parseFloat(subtotal);
+        }
+
+        function limparComanda() {
+            var tabela = document.getElementById("tabela");
+            var linhas = tabela.getElementsByTagName("tr");
+            var linhasLength = linhas.length;
+            for (var i = 1; i < linhasLength; i++) {
+                linhas[1].remove();
+            }
+            cont = 1;
+            subtotais = [];
+
+            var linha = '<tr id="l' + cont + '"><td id="l' + cont + '-c1">' + cont + '</td><td id="l' + cont + '-c2"><select id="l' + cont + '-c2-1" class="select-1"><option value="x-tudo" class="options">X-Tudo</option><option value="x-bacon" class="options">X-Bacon</option><option value="x-calabresa" class="options">X-Calabresa</option><option value="refrigerante" class="options">Refrigerante</option><option value="suco" class="options">Suco</option></select></td><td id="l' + cont + '-c3"><input id="l' + cont + '-c3-1" class="qtd" type="number" onblur="calcSubTotal(' + cont + ')" min="0" placeholder="0"></td><td id="l' + cont + '-c4"><input id="l' + cont + '-c4-1" type="text" onblur="calcSubTotal(' + cont + ')" min="0" placeholder="0"></td><td id="l' + cont + '-c5" class="sub-t">0</td></tr>';
+
+            tabela.insertAdjacentHTML('beforeend', linha);
+            document.getElementById("total").innerHTML = "";
+        }
+
+    </script>
+</head>
+
+<body>
+    <div id="content">
+        <h2 id="display-1">Comanda do Cliente</h2>
+    <div id="buttons">
+        <div id="add-sub">
+            <input type="button" class="button add-sub" value="+" onclick="addLine()">
+        </div>
+    </div>
+        <table style="margin-bottom: 15px;" id="tabela" border="1px solid black">
+            <thead>
+                <th>#</th>
+                <th>Descrição</th>
+                <th>Qtd</th>
+                <th>Preço</th>
+                <th>Subtotal</th>
+            </thead>
+            <tr id="l1">
+                <td id="l1-c1">1</td>
+                <td id="l1-c2">
+                    <select id="l1-c2-1" class="select-1">
+                        <option value="x-tudo" class="options">X-Tudo</option>
+                        <option value="x-bacon" class="options">X-Bacon</option>
+                        <option value="x-calabresa" class="options">X-Calabresa</option>
+                        <option value="refrigerante" class="options">Refrigerante</option>
+                        <option value="suco" class="options">Suco</option>
+                    </select>
+                </td>
+                <td id="l1-c3"><input id="l1-c3-1" class="qtd" type="number" onblur="calcSubTotal(1)" min="0" placeholder="0">
+                </td>
+                <td id="l1-c4"><input id="l1-c4-1" type="text" onblur="calcSubTotal(1)" min="0" placeholder="0"></td>
+                <td id="l1-c5" class="sub-t">0</td>
+            </tr>
+        </table>
+        
+        <hr style="margin-bottom: 15px;">
+        <h2 id="total"></h2>
+        
+        <div id="buttons">
+            <div id="button-action">
+                <input type="button" class="button" value="Calcular Total" onclick="calcTotal()">
+                <input type="button" class="button" value="Limpar Comanda" onclick="limparComanda()">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
